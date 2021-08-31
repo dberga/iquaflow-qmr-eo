@@ -34,10 +34,10 @@ python iqf_use_case_metrics.py
 # To run the example dataset, download it:
 ./download.sh
 
-conda create -n satellogic python=3.7  -q -y
+conda create -n satellogic python=3.6  -q -y
     
 git clone https://gitlab+deploy-token-28:xkxRsx2anp-u3_V4aAK9@publicgitlab.satellogic.com/iqf/iq_tool_box- && \
-cd iq_tool_box- && git checkout regressor && \
+cd iq_tool_box- && git checkout regressor-rebase-b && \
 conda run -n satellogic pip install -e . && \
 cd ..
 
