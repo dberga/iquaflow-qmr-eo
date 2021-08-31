@@ -20,7 +20,7 @@ def main(
 
     task = PythonScriptTaskExecution(model_script_path=python_ml_script_path)
 
-    experiment_name='test_quality_rer'
+    experiment_name='regressor'
     experiment = ExperimentSetup(
         experiment_name=experiment_name,
         task_instance=task,
@@ -32,65 +32,37 @@ def main(
 
     experiment.execute()
     experiment_info = ExperimentInfo(experiment_name)
-    metric = RERMetrics()
 
+    metric = RERMetrics()
     results_run = experiment_info.apply_metric_per_run(metric, str(None))
 
-    experiment_name='test_quality_snr'
-    experiment = ExperimentSetup(
-        experiment_name=experiment_name,
-        task_instance=task,
-        ref_dsw_train=ds_wrapper,
-        ds_modifiers_list=ds_modifiers_list,
-        ref_dsw_val=ds_wrapper,
-        repetitions=1
-    )
-    experiment.execute()
-    experiment_info = ExperimentInfo(experiment_name)
     metric = SNRMetrics()
-    results_run = experiment_info.apply_metric_per_run_no_mlflow(metric, str(None))
+    results_run = experiment_info.apply_metric_per_run(metric, str(None))
 
-    experiment_name='test_quality_gaussian'
-    experiment = ExperimentSetup(
-        experiment_name=experiment_name,
-        task_instance=task,
-        ref_dsw_train=ds_wrapper,
-        ds_modifiers_list=ds_modifiers_list,
-        ref_dsw_val=ds_wrapper,
-        repetitions=1
-    )
-    experiment.execute()
-    experiment_info = ExperimentInfo(experiment_name)
     metric = GaussianBlurMetrics()
-    results_run = experiment_info.apply_metric_per_run_no_mlflow(metric, str(None))
+    results_run = experiment_info.apply_metric_per_run(metric, str(None))
 
-    experiment_name='test_quality_sharpness'
-    experiment = ExperimentSetup(
-        experiment_name=experiment_name,
-        task_instance=task,
-        ref_dsw_train=ds_wrapper,
-        ds_modifiers_list=ds_modifiers_list,
-        ref_dsw_val=ds_wrapper,
-        repetitions=1
-    )
-    experiment.execute()
-    experiment_info = ExperimentInfo(experiment_name)
     metric = NoiseSharpnessMetrics()
-    results_run = experiment_info.apply_metric_per_run_no_mlflow(metric, str(None))
+    results_run = experiment_info.apply_metric_per_run(metric, str(None))
 
-    experiment_name='test_quality_resol'
-    experiment = ExperimentSetup(
-        experiment_name=experiment_name,
-        task_instance=task,
-        ref_dsw_train=ds_wrapper,
-        ds_modifiers_list=ds_modifiers_list,
-        ref_dsw_val=ds_wrapper,
-        repetitions=1
-    )
-    experiment.execute()
-    experiment_info = ExperimentInfo(experiment_name)
     metric = ResolScaleMetrics()
-    results_run = experiment_info.apply_metric_per_run_no_mlflow(metric, str(None))
+    results_run = experiment_info.apply_metric_per_run(metric, str(None))
+
+    df = experiment_info.get_df(
+        ds_params=["modifier"],
+        metrics=[
+            "rer",
+            "snr",
+            "sigma",
+            "sharpness",
+            "scale"
+        ]
+        )
+
+    print("\n\n\************************************\n\n")
+    print('METRICS:\n')
+    print(df)
+    print("\n\n\************************************\n\n")
 
 if __name__=="__main__":
 
