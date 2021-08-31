@@ -7,10 +7,10 @@ help:
 	@echo "dockershell -- raises an interactive shell docker"
 
 build:
-	docker build -t sisr-reg .
+	docker build -t iqfreg .
 	./download.sh
 
 dockershell:
-	docker run --rm --name sisr-reg --gpus all -p 9193:9193 \
-	-v $(shell pwd):/sisr -v $(DS_VOLUME):/scratch \
-	-it sisr-reg
+	docker run --rm --name iqfreg --gpus all \
+	-v $(shell pwd):/maindir -v $(DS_VOLUME):/scratch \
+	-it iqfreg
