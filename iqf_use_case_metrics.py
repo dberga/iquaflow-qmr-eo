@@ -1,5 +1,6 @@
 import os
 import argparse
+import shutil
 
 from iq_tool_box.datasets import DSModifier, DSWrapper, DSModifier_sr
 from iq_tool_box.experiments import ExperimentInfo, ExperimentSetup
@@ -7,11 +8,26 @@ from iq_tool_box.experiments.experiment_visual import ExperimentVisual
 from iq_tool_box.experiments.task_execution import PythonScriptTaskExecution
 from iq_tool_box.quality_metrics import RERMetrics, SNRMetrics, GaussianBlurMetrics, NoiseSharpnessMetrics, ResolScaleMetrics
 
+def rm_experiment(experiment_name):
+    """Remove previous mlflow records of previous executions of the same experiment"""
+    try:
+        mlflow.delete_experiment(ExperimentInfo(experiment_name).experiment_id)
+    except:
+        pass
+    shutil.rmtree("./mlruns/.trash/",ignore_errors=True)
+    shutil.rmtree("./tests/test_datasets/inria-aid_short/test/.ipynb_checkpoints",ignore_errors=True)
+    os.makedirs("./mlruns/.trash/",exist_ok=True)
+
+
 def main(
     data_path = "./tests/test_datasets/inria-aid_short/test/images_short", 
     ml_models_path = "./tests/test_ml_models",
     mock_model_script_name = "sr.py"
     ):
+
+    experiment_name='regressor'
+
+    rm_experiment(experiment_name)
 
     python_ml_script_path = os.path.join(ml_models_path, mock_model_script_name)
 
@@ -20,7 +36,6 @@ def main(
 
     task = PythonScriptTaskExecution(model_script_path=python_ml_script_path)
 
-    experiment_name='regressor'
     experiment = ExperimentSetup(
         experiment_name=experiment_name,
         task_instance=task,
