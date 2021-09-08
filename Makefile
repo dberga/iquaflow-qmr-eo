@@ -12,5 +12,5 @@ build:
 
 dockershell:
 	docker run --rm --name iqfreg --gpus all \
-	-v $(shell pwd):/sisr -v $(DS_VOLUME):/scratch \
+	-v $(shell pwd):/regressor -v $(DS_VOLUME):/scratch \
 	-it iqfreg
