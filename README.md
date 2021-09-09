@@ -23,11 +23,11 @@ optional arguments:
 ```
 
 ## Environment with docker
-
+```
 make build
 make dockershell
 python iqf_use_case_metrics.py
-
+```
 ## Environment with conda
 
 ```
