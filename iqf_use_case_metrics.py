@@ -6,7 +6,7 @@ from iq_tool_box.datasets import DSModifier, DSWrapper, DSModifier_sr
 from iq_tool_box.experiments import ExperimentInfo, ExperimentSetup
 from iq_tool_box.experiments.experiment_visual import ExperimentVisual
 from iq_tool_box.experiments.task_execution import PythonScriptTaskExecution
-from iq_tool_box.quality_metrics import RERMetrics, SNRMetrics, GaussianBlurMetrics, NoiseSharpnessMetrics, ResolScaleMetrics
+from iq_tool_box.quality_metrics import RERMetrics, SNRMetrics, GaussianBlurMetrics, NoiseSharpnessMetrics, GSDMetrics
 
 def rm_experiment(experiment_name):
     """Remove previous mlflow records of previous executions of the same experiment"""
@@ -60,7 +60,7 @@ def main(
     metric = NoiseSharpnessMetrics()
     results_run = experiment_info.apply_metric_per_run(metric, str(None))
 
-    metric = ResolScaleMetrics()
+    metric = GSDMetrics()
     results_run = experiment_info.apply_metric_per_run(metric, str(None))
 
     df = experiment_info.get_df(
