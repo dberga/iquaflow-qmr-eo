@@ -14,7 +14,7 @@ The regressor metrics is a tool to measure the following metrics on image datase
 2. Prepare your dataset with a the file "annotations.json" and a folder with the images. The annotations file can be empty.
 3. Run:
 ```
-usage: python iqf_use_case_metrics.py [-h] [--imf IMF]
+usage: python iqf_use_case_qmr.py [-h] [--imf IMF]
 
 optional arguments:
   -h, --help  show this help message and exit
@@ -26,7 +26,7 @@ optional arguments:
 ```
 make build
 make dockershell
-python iqf_use_case_metrics.py
+python iqf_use_case_qmr.py
 ```
 ## Environment with conda
 
@@ -39,7 +39,7 @@ conda create -n satellogic python=3.6  -q -y
 # install acording to your GPU system
 conda run -n satellogic pip install torch==1.7.0+cu110 torchvision==0.8.1+cu110 -f https://download.pytorch.org/whl/torch_stable.html
 
-pip install https://gitlab+deploy-token-28:xkxRsx2anp-u3_V4aAK9@publicgitlab.satellogic.com/iqf/iq_tool_box-@regressor-rebase-b
+pip install git+https://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@github.com/satellogic/iquaflow.git@dberga-regressor
 
 conda run -n satellogic pip install piq tqdm tensorboardX && \
 conda run -n satellogic pip install imageio scikit-image && \
@@ -47,6 +47,6 @@ conda run -n satellogic pip install rasterio==1.2.6
 
 conda activate satellogic
 
-python iqf_use_case_metrics.py
+python iqf_use_case_qmr.py
 
 ```
