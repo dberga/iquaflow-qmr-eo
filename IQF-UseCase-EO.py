@@ -98,9 +98,18 @@ for ids, database_name in enumerate(list(data_paths.keys())):
         ref_dsw_train=ds_wrapper,
         ds_modifiers_list=ds_modifiers_list,
         ref_dsw_val=ds_wrapper,
-        repetitions=1
+        repetitions=1,
+        extra_train_params={"trainds": [data_path], "traindsinput": [images_path], "valds": [data_path],"valdsinput": [images_path]}
     )
-
+    # Enforce replacement of paths in experiment wrappers
+    '''
+    experiment.ref_dsw_train.data_input = images_path
+    if experiment.ref_dsw_test is not None:
+        experiment.ref_dsw_test.data_input = images_path
+    if experiment.ref_dsw_val is not None:
+        experiment.ref_dsw_val.data_input = images_path 
+    '''
+    
     #Execute the experiment
     experiment.execute()
     experiment_info = ExperimentInfo(experiment_name)
