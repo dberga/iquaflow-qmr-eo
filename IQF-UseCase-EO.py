@@ -73,7 +73,9 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     # set output folders
     plots_folder = "plots/"+experiment_name+"/"
     results_folder = "results/"+experiment_name+"/"
-    
+    os.makedirs(plots_folder, exist_ok=True)
+    os.makedirs(results_folder, exist_ok=True)
+
     # plot SNE of existing images
     if plot_sne:
         plotSNE(database_name, data_path, (232,232), 6e4, True, savefig, plots_folder)
@@ -110,7 +112,7 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     # It contains built in operations but also it can be used to retrieve raw data for futher analysis
 
     print('Calculating Quality Metric Regression...'+",".join(regressor_quality_metrics)) #default configurations
-    path_regressor_quality_metrics = f'./{results_folder}_regressor_quality_metrics.csv'
+    path_regressor_quality_metrics = f'./{results_folder}regressor_quality_metrics.csv'
     if use_existing_metrics and os.path.exists(path_regressor_quality_metrics):
         df = pd.read_csv(path_regressor_quality_metrics)
     else:
