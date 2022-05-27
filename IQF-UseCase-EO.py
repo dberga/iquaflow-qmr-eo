@@ -7,8 +7,8 @@
 # QMR execution settings
 plot_sne = False                         # t-SNE plot? (requires a bit of RAM)
 plot_metrics_comp = True                 # metrics comparison?
+savefig = False                           # save figs or show in line
 use_existing_metrics = True              # read existing metrics output data files instead of processing them?
-savefig = True 				 # save figs or imshow
 regressor_quality_metrics = ['sigma','snr','rer','sharpness','scale','score']
 
 #Define path of the original (reference) datasets
@@ -39,6 +39,7 @@ from iquaflow.experiments import ExperimentInfo, ExperimentSetup
 from iquaflow.experiments.experiment_visual import ExperimentVisual
 from iquaflow.experiments.task_execution import PythonScriptTaskExecution
 from iquaflow.quality_metrics import RERMetrics, SNRMetrics, GaussianBlurMetrics, NoiseSharpnessMetrics, GSDMetrics, ScoreMetrics
+from visual_comparison import metric_comp, plotSNE
 
 
 # In[ ]:
@@ -75,7 +76,7 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     results_folder = "results/"+experiment_name+"/"
     os.makedirs(plots_folder, exist_ok=True)
     os.makedirs(results_folder, exist_ok=True)
-
+    
     # plot SNE of existing images
     if plot_sne:
         plotSNE(database_name, data_path, (232,232), 6e4, True, savefig, plots_folder)
@@ -104,7 +105,7 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     if experiment.ref_dsw_val is not None:
         experiment.ref_dsw_val.data_input = images_path 
     '''
-    
+
     #Execute the experiment
     experiment.execute()
     experiment_info = ExperimentInfo(experiment_name)
@@ -147,10 +148,14 @@ for ids, database_name in enumerate(list(data_paths.keys())):
 
 
 # concat all dataset tables
-df = pd.concat(dataframes)
-path_all_datasets = f"{results_folder}/results.csv"
-print(f"writing {path_all_datasets}")
-df.to_csv(path_all_datasets)
+#df = pd.concat(dataframes)
+if len(dataframes) > 1:
+    df = dataframes[0]
+    for df_result in dataframes[1:]:
+        df = pd.merge(df, dataframes)
+    path_all_datasets = f"{results_folder}/results.csv"
+    print(f"writing {path_all_datasets}")
+    df.to_csv(path_all_datasets)
 
 
 # In[ ]:
