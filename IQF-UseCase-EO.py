@@ -6,7 +6,7 @@
 
 # QMR execution settings
 plot_sne = False                         # t-SNE plot? (requires a bit of RAM)
-plot_metrics_comp = True                 # metrics comparison?
+plot_metrics_comp = False                 # metrics comparison?
 savefig = False                           # save figs or show in line
 use_existing_metrics = True              # read existing metrics output data files instead of processing them?
 regressor_quality_metrics = ['sigma','snr','rer','sharpness','scale','score']
@@ -107,7 +107,7 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     
     # Define and execute script (sr.py: copy image files to testing folder)
     ds_wrapper = DSWrapper(data_path=data_path)
-    ds_modifiers_list = [DSModifierFake(name="base",images_dir=images_path)]
+    ds_modifiers_list = [DSModifier()] # DSModifierFake(name="base",images_dir=images_path)
     task = PythonScriptTaskExecution( model_script_path = python_ml_script_path )
     experiment = ExperimentSetup(
         experiment_name=experiment_name,
@@ -145,14 +145,14 @@ for ids, database_name in enumerate(list(data_paths.keys())):
         _ = experiment_info.apply_metric_per_run(NoiseSharpnessMetrics(), ds_wrapper.json_annotations)
         _ = experiment_info.apply_metric_per_run(GSDMetrics(), ds_wrapper.json_annotations)
         df = experiment_info.get_df(
-            ds_params=["modifier"],
+            ds_params=["ds_modifier"],
             metrics=regressor_quality_metrics,
             dropna=False
         )
         df.to_csv(path_regressor_quality_metrics)
 
     # check results
-    df["modifier"] = database_name
+    df["ds_modifier"] = database_name
 
     # plot metric comparison
     if plot_metrics_comp:
@@ -167,6 +167,7 @@ for ids, database_name in enumerate(list(data_paths.keys())):
 
 # In[ ]:
 
+
 # concat all dataset tables
 #df = pd.concat(dataframes)
 results_folder = "results/"
@@ -176,12 +177,9 @@ df = pd.concat(dataframes,axis=0)
 {df.drop(str(field),inplace=True,axis=1) for field in df if "Unnamed" in str(field)}
 df.to_csv(path_all_datasets)
 
+
 # In[ ]:
 
 
 df
-
-
-
-
 
