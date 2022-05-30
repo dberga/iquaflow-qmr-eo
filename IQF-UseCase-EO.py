@@ -167,24 +167,20 @@ for ids, database_name in enumerate(list(data_paths.keys())):
 
 # In[ ]:
 
-
 # concat all dataset tables
 #df = pd.concat(dataframes)
-print(f"writing csv: {path_all_datasets}")
 results_folder = "results/"
+path_all_datasets = f"{results_folder}results.csv"
+print(f"writing csv: {path_all_datasets}")
 df = pd.concat(dataframes,axis=0)
 {df.drop(str(field),inplace=True,axis=1) for field in df if "Unnamed" in str(field)}
-path_all_datasets = f"{results_folder}results.csv"
 df.to_csv(path_all_datasets)
-
 
 # In[ ]:
 
 
 df
 
-
-# In[ ]:
 
 
 
