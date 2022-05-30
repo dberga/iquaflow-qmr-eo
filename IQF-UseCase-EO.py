@@ -13,12 +13,30 @@ regressor_quality_metrics = ['sigma','snr','rer','sharpness','scale','score']
 
 #Define path of the original (reference) datasets
 data_paths = {
-"inria-aid10": "./Data/inria-aid_short",
-"UCMerced380": "./Data/test-ds",
+    "inria-aid10": "./Data/inria-aid_short",
+    "UCMerced380": "./Data/test-ds",
+    "DeepGlobe469": "./Data/DeepGlobe",
+    "inria-test180": "./Data/AerialImageDataset",
+    "inria-train180": "./Data/AerialImageDataset",
+    "UCMerced2100": "./Data/UCMerced_LandUse",
+    "shipsnet-ships4000": "./Data/shipsnet",
+    "shipsnet-scenes7": "./Data/shipsnet",
+    "USGS279": "./Data/USGS",
+    "XView-train846": "./Data/XView",
+    "XView-val281": "./Data/XView",
 }
 image_folders = {
     "inria-aid10": "test/images_short",
     "UCMerced380": "test",
+    "DeepGlobe469": "images",
+    "inria-test180": "test/images",
+    "inria-train180": "train/images",
+    "UCMerced2100": "Images/ALL_CATEGORIES",
+    "shipsnet-ships4000": "shipsnet",
+    "shipsnet-scenes7": "scenes/scenes",
+    "USGS279": "hr_images",
+    "XView-train846": "train_images",
+    "XView-val281": "val_images",
 }
 
 
@@ -32,6 +50,9 @@ import shutil
 import mlflow
 import pandas as pd
 from pdb import set_trace as debug # debugging
+
+# display tables of max 50 columns
+pd.set_option('display.max_columns', 50)
 
 from custom_modifiers import DSModifierFake
 from iquaflow.datasets import DSModifier, DSWrapper
@@ -115,7 +136,7 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     print('Calculating Quality Metric Regression...'+",".join(regressor_quality_metrics)) #default configurations
     path_regressor_quality_metrics = f'./{results_folder}regressor_quality_metrics.csv'
     if use_existing_metrics and os.path.exists(path_regressor_quality_metrics):
-        df = pd.read_csv(path_regressor_quality_metrics)
+        df = pd.read_csv(path_regressor_quality_metrics, index_col=None)
     else:
         _ = experiment_info.apply_metric_per_run(ScoreMetrics(), ds_wrapper.json_annotations)
         _ = experiment_info.apply_metric_per_run(RERMetrics(), ds_wrapper.json_annotations)
@@ -149,17 +170,22 @@ for ids, database_name in enumerate(list(data_paths.keys())):
 
 # concat all dataset tables
 #df = pd.concat(dataframes)
-if len(dataframes) > 1:
-    df = dataframes[0]
-    for df_result in dataframes[1:]:
-        df = pd.merge(df, dataframes)
-    path_all_datasets = f"{results_folder}/results.csv"
-    print(f"writing {path_all_datasets}")
-    df.to_csv(path_all_datasets)
+print(f"writing csv: {path_all_datasets}")
+results_folder = "results/"
+df = pd.concat(dataframes,axis=0)
+{df.drop(str(field),inplace=True,axis=1) for field in df if "Unnamed" in str(field)}
+path_all_datasets = f"{results_folder}results.csv"
+df.to_csv(path_all_datasets)
 
 
 # In[ ]:
 
 
 df
+
+
+# In[ ]:
+
+
+
 
