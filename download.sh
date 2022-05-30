@@ -8,7 +8,9 @@ fi
 # inria-aid_short (Inria AILD, 10 images) [30 cm/px][5000x5000]
 wget https://image-quality-framework.s3.eu-west-1.amazonaws.com/iq-tool-box/datasets/inria-aid_short.zip -O $TO_PATH/file.zip
 unzip -o $TO_PATH/file.zip -d $TO_PATH
-rm $TO_PATH/file.zip
+mv $TO_PATH/test_datasets/inria-aid_short $TO_PATH
+rm -rf $TO_PATH/test_datasets
+rm -rf $TO_PATH/file.zip
 
 # test-ds (UCMerced Test, 380 images) [30 cm/px][232x232]
 TO_PATH=./Data
