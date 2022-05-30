@@ -13,7 +13,8 @@ regressor_quality_metrics = ['sigma','snr','rer','sharpness','scale','score']
 
 #Define path of the original (reference) datasets
 data_paths = {
-    "inria-aid10": "./Data/inria-aid_short",
+    "inria-train10": "./Data/inria-aid_short",
+    "inria-test10": "./Data/inria-aid_short",
     "UCMerced380": "./Data/test-ds",
     "DeepGlobe469": "./Data/DeepGlobe",
     "inria-test180": "./Data/AerialImageDataset",
@@ -26,7 +27,8 @@ data_paths = {
     "XView-val281": "./Data/XView",
 }
 image_folders = {
-    "inria-aid10": "test/images_short",
+    "inria-train10": "train/images_short",
+    "inria-test10": "test/images_short",
     "UCMerced380": "test",
     "DeepGlobe469": "images",
     "inria-test180": "test/images",
@@ -153,10 +155,6 @@ for ids, database_name in enumerate(list(data_paths.keys())):
 
     # check results
     df["ds_modifier"] = database_name
-
-    # plot metric comparison
-    if plot_metrics_comp:
-        metric_comp(df,regressor_quality_metrics,savefig,plots_folder)
     
     print(f"writing {path_regressor_quality_metrics}")
     df.to_csv(path_regressor_quality_metrics)
@@ -182,4 +180,12 @@ df.to_csv(path_all_datasets)
 
 
 df
+
+
+# In[ ]:
+
+
+# plot metric comparison
+if plot_metrics_comp:
+    metric_comp(df,regressor_quality_metrics,savefig,plots_folder)
 
