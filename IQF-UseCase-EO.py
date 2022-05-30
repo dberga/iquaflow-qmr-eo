@@ -13,7 +13,6 @@ regressor_quality_metrics = ['sigma','snr','rer','sharpness','scale','score']
 
 #Define path of the original (reference) datasets
 data_paths = {
-    "inria-train10": "./Data/inria-aid_short",
     "inria-test10": "./Data/inria-aid_short",
     "UCMerced380": "./Data/test-ds",
     "DeepGlobe469": "./Data/DeepGlobe",
@@ -27,7 +26,6 @@ data_paths = {
     "XView-val281": "./Data/XView",
 }
 image_folders = {
-    "inria-train10": "train/images_short",
     "inria-test10": "test/images_short",
     "UCMerced380": "test",
     "DeepGlobe469": "images",
