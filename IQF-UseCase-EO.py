@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 # QMR execution settings
@@ -13,34 +13,34 @@ regressor_quality_metrics = ['sigma','snr','rer','sharpness','scale','score']
 
 #Define path of the original (reference) datasets
 data_paths = {
-    "inria-test10": "./Data/inria-aid_short",
-    "UCMerced380": "./Data/test-ds",
     "DeepGlobe469": "./Data/DeepGlobe",
-    "inria-test180": "./Data/AerialImageDataset",
-    "inria-train180": "./Data/AerialImageDataset",
     "UCMerced2100": "./Data/UCMerced_LandUse",
+    "UCMerced380": "./Data/test-ds",
+    "USGS279": "./Data/USGS",
     "shipsnet-ships4000": "./Data/shipsnet",
     "shipsnet-scenes7": "./Data/shipsnet",
-    "USGS279": "./Data/USGS",
+    "inria-test10": "./Data/inria-aid_short",
+    "inria-test180": "./Data/AerialImageDataset",
+    "inria-train180": "./Data/AerialImageDataset",
     "XView-train846": "./Data/XView",
     "XView-val281": "./Data/XView",
 }
 image_folders = {
-    "inria-test10": "test/images_short",
-    "UCMerced380": "test",
     "DeepGlobe469": "images",
-    "inria-test180": "test/images",
-    "inria-train180": "train/images",
     "UCMerced2100": "Images/ALL_CATEGORIES",
+    "UCMerced380": "test",
+    "USGS279": "hr_images",
     "shipsnet-ships4000": "shipsnet",
     "shipsnet-scenes7": "scenes/scenes",
-    "USGS279": "hr_images",
+    "inria-test10": "test/images_short",
+    "inria-test180": "test/images",
+    "inria-train180": "train/images",
     "XView-train846": "train_images",
     "XView-val281": "val_images",
 }
 
 
-# In[ ]:
+# In[2]:
 
 
 # Imports
@@ -63,7 +63,7 @@ from iquaflow.quality_metrics import RERMetrics, SNRMetrics, GaussianBlurMetrics
 from visual_comparison import metric_comp, plotSNE
 
 
-# In[ ]:
+# In[3]:
 
 
 # Remove previous mlflow records of previous executions of the same experiment
@@ -78,7 +78,7 @@ except:
     pass
 
 
-# In[ ]:
+# In[4]:
 
 
 dataframes = []
@@ -136,7 +136,7 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     print('Calculating Quality Metric Regression...'+",".join(regressor_quality_metrics)) #default configurations
     path_regressor_quality_metrics = f'./{results_folder}regressor_quality_metrics.csv'
     if use_existing_metrics and os.path.exists(path_regressor_quality_metrics):
-        df = pd.read_csv(path_regressor_quality_metrics, index_col=None)
+        df = pd.read_csv(path_regressor_quality_metrics, index_col='ds_modifier')
     else:
         _ = experiment_info.apply_metric_per_run(ScoreMetrics(), ds_wrapper.json_annotations)
         _ = experiment_info.apply_metric_per_run(RERMetrics(), ds_wrapper.json_annotations)
@@ -154,6 +154,11 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     # check results
     df["ds_modifier"] = database_name
     
+    # Clean dataframe
+    df = df[['ds_modifier']+regressor_quality_metrics]
+    df = df.set_index('ds_modifier')
+    df = df[~df.index.duplicated(keep='first')]
+    
     print(f"writing {path_regressor_quality_metrics}")
     df.to_csv(path_regressor_quality_metrics)
     
@@ -161,7 +166,7 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     dataframes.append(df)
 
 
-# In[ ]:
+# In[5]:
 
 
 # concat all dataset tables
@@ -174,13 +179,13 @@ df = pd.concat(dataframes,axis=0)
 df.to_csv(path_all_datasets)
 
 
-# In[ ]:
+# In[6]:
 
 
 df
 
 
-# In[ ]:
+# In[7]:
 
 
 # plot metric comparison
