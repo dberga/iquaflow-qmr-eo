@@ -39,6 +39,20 @@ image_folders = {
     "XView-val281": "val_images",
 }
 
+image_resolutions = {
+    "DeepGlobe469": 1024,
+    "UCMerced2100": 256,
+    "UCMerced380": 256,
+    "USGS279": 1024,
+    "shipsnet-ships4000": 64,
+    "shipsnet-scenes7": 1024,
+    "inria-test10": 1024,
+    "inria-test180": 1024,
+    "inria-train180": 1024,
+    "XView-train846": 1024,
+    "XView-val281": 1024,
+}
+
 
 # In[2]:
 
@@ -138,12 +152,12 @@ for ids, database_name in enumerate(list(data_paths.keys())):
     if use_existing_metrics and os.path.exists(path_regressor_quality_metrics):
         df = pd.read_csv(path_regressor_quality_metrics, index_col='ds_modifier')
     else:
-        _ = experiment_info.apply_metric_per_run(ScoreMetrics(), ds_wrapper.json_annotations)
-        _ = experiment_info.apply_metric_per_run(RERMetrics(), ds_wrapper.json_annotations)
-        _ = experiment_info.apply_metric_per_run(SNRMetrics(), ds_wrapper.json_annotations)
-        _ = experiment_info.apply_metric_per_run(GaussianBlurMetrics(), ds_wrapper.json_annotations)
-        _ = experiment_info.apply_metric_per_run(NoiseSharpnessMetrics(), ds_wrapper.json_annotations)
-        _ = experiment_info.apply_metric_per_run(GSDMetrics(), ds_wrapper.json_annotations)
+        _ = experiment_info.apply_metric_per_run(ScoreMetrics(input_size=image_resolutions[database_name]), ds_wrapper.json_annotations)
+        _ = experiment_info.apply_metric_per_run(RERMetrics(input_size=image_resolutions[database_name]), ds_wrapper.json_annotations)
+        _ = experiment_info.apply_metric_per_run(SNRMetrics(input_size=image_resolutions[database_name]), ds_wrapper.json_annotations)
+        _ = experiment_info.apply_metric_per_run(GaussianBlurMetrics(input_size=image_resolutions[database_name]), ds_wrapper.json_annotations)
+        _ = experiment_info.apply_metric_per_run(NoiseSharpnessMetrics(input_size=image_resolutions[database_name]), ds_wrapper.json_annotations)
+        _ = experiment_info.apply_metric_per_run(GSDMetrics(input_size=image_resolutions[database_name]), ds_wrapper.json_annotations)
         df = experiment_info.get_df(
             ds_params=["ds_modifier"],
             metrics=regressor_quality_metrics,
