@@ -1,3 +1,5 @@
+![](https://github.com/satellogic/iquaflow/blob/main/docs/source/iquaflow_logo_mini.png)
+
 # IQUAFLOW - QMRNet EO Dataset Evaluation
 
 Note: Use our [jupyter notebook](IQF-UseCase-EO.ipynb) to run the use case.
