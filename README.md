@@ -2,7 +2,7 @@
 
 # IQUAFLOW - QMRNet EO Dataset Evaluation
 
-Note: Use our [jupyter notebook](IQF-UseCase-EO.ipynb) to run the use case.
+- Note: Use our [jupyter notebook](IQF-UseCase-EO.ipynb) to run the use case.
 
 - The rest of code is distributed in distinct repos [IQUAFLOW framework](https://github.com/satellogic/iquaflow), [QMRNet's Super-Resolution Use case](https://github.com/dberga/iquaflow-qmr-sisr) and [QMRNet's Loss for SR](https://github.com/dberga/iquaflow-qmr-loss).
 
