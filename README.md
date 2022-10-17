@@ -23,7 +23,7 @@ Regressor metrics as a tool to measure quality on image datasets:
 2. Prepare your dataset with a the file "annotations.json" and a folder with the images. The annotations file can be empty.
 3. Run:
 ```
-usage: python iqf_use_case_qmr.py [-h] [--imf IMF]
+usage: python IQF-UseCase-EO.py [-h] [--imf IMF]
 
 optional arguments:
   -h, --help  show this help message and exit
