@@ -54,7 +54,7 @@ conda activate satellogic
 python IQF-UseCase-EO.py
 
 ```
-Note: make sure to replace "YOUR_GIT_TOKEN" to your github access token.
+Note: make sure to replace "YOUR_GIT_TOKEN" to your github access token, also in [Dockerfile](https://github.com/dberga/iquaflow-qmr-eo/blob/master/Dockerfile).
 
 # Cite
 
