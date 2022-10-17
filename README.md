@@ -1,6 +1,6 @@
 # IQUAFLOW - QMRNet EO Dataset Evaluation
 
-Note: Use our [jupyter notebook](https://github.com/dberga/iquaflow-qmr-eo/blob/master/IQF-UseCase-EO.ipynb) to run the use case.
+Note: Use our [jupyter notebook](IQF-UseCase-EO.ipynb) to run the use case.
 
 - The rest of code is distributed in distinct repos [IQUAFLOW framework](https://github.com/satellogic/iquaflow), [QMRNet's Super-Resolution Use case](https://github.com/dberga/iquaflow-qmr-sisr) and [QMRNet's Loss for SR](https://github.com/dberga/iquaflow-qmr-loss).
 
@@ -56,7 +56,7 @@ conda activate satellogic
 python IQF-UseCase-EO.py
 
 ```
-Note: make sure to replace "YOUR_GIT_TOKEN" to your github access token, also in [Dockerfile](https://github.com/dberga/iquaflow-qmr-eo/blob/master/Dockerfile).
+Note: make sure to replace "YOUR_GIT_TOKEN" to your github access token, also in [Dockerfile](Dockerfile).
 
 # Cite
 
