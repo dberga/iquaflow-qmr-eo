@@ -45,7 +45,7 @@ conda create -n satellogic python=3.6  -q -y
 # install acording to your GPU system
 conda run -n satellogic pip install torch==1.7.0+cu110 torchvision==0.8.1+cu110 -f https://download.pytorch.org/whl/torch_stable.html
 
-pip install git+https://YOUR_GIT_TOKEN@github.com/satellogic/iquaflow.git@dberga-regressor
+pip install git+https://YOUR_GIT_TOKEN@github.com/satellogic/iquaflow.git
 
 conda run -n satellogic pip install piq tqdm tensorboardX && \
 conda run -n satellogic pip install imageio scikit-image && \
