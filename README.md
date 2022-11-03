@@ -75,7 +75,7 @@ If you use content of this repo, please cite:
 @article{galles2022,
   title={IQUAFLOW: A NEW FRAMEWORK TO MEASURE IMAGE QUALITY},
   author={Gallés, Pau and Takáts, Katalin and Hernández-Cabronero, Miguel and Berga, David and Pega, Luciano and Riordan-Chen, Laura and Garcia-Moll, Clara and Becker, Guillermo and Garriga, Adán and Bukva, Anica and Serra-Sagristà, Joan and Vilaseca, David and Marín, Javier},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  journal={arXiv preprint arXiv:2210.13269},
   year={2022}
 }
 ```
