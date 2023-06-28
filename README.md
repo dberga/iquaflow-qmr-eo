@@ -1,5 +1,5 @@
 ![](https://github.com/satellogic/iquaflow/blob/main/docs/source/iquaflow_logo_mini.png)
-Check [QMRNet's preprint](https://arxiv.org/abs/2210.06618) and [IQUAFLOW's preprint](https://arxiv.org/abs/2210.13269) documentation
+Check [QMRNet's article](https://www.mdpi.com/2072-4292/15/9/2451) and [IQUAFLOW's preprint](https://arxiv.org/abs/2210.13269) documentation
 
 # IQUAFLOW - QMRNet EO Dataset Evaluation
 
