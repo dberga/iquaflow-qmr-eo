@@ -5,7 +5,7 @@ Check [QMRNet's article](https://www.mdpi.com/2072-4292/15/9/2451) and [IQUAFLOW
 
 - Note: Use our [jupyter notebook](IQF-UseCase-EO.ipynb) to run the use case.
 
-- The rest of code is distributed in distinct repos [IQUAFLOW framework](https://github.com/satellogic/iquaflow), [QMRNet's Super-Resolution Use case](https://github.com/dberga/iquaflow-qmr-sisr) and [QMRNet's Loss for SR](https://github.com/dberga/iquaflow-qmr-loss).
+- The rest of code is distributed in distinct repos [IQUAFLOW framework](https://github.com/satellogic/iquaflow), [QMRNet's Super-Resolution Use case](https://github.com/dberga/iquaflow-qmr-sisr), [QMRNet's Loss for SR](https://github.com/dberga/iquaflow-qmr-loss) and [QMRNet standalone code](https://github.com/satellogic/iquaflow/tree/main/iquaflow/quality_metrics).
 
 # Regressor Metrics
 
@@ -60,6 +60,10 @@ python IQF-UseCase-EO.py
 
 ```
 Note: make sure to replace "YOUR_GIT_TOKEN" to your github access token, also in [Dockerfile](Dockerfile).
+
+# Design and Train the QMRNet (regressor.py)
+
+In [QMRNet standalone code](https://github.com/satellogic/iquaflow/tree/main/iquaflow/quality_metrics) you can find several scripts for training and testing the QMRNet, mainly integrated in `regressor.py`. Using `run_spec.sh` you can specify any of the `cfgs\` folder where the architecture design and hyperparameters are defined. You can create new versions by adding new `.cfg` files.
 
 # Cite
 
