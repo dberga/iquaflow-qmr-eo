@@ -71,7 +71,7 @@ In [QMRNet standalone code](https://github.com/satellogic/iquaflow/tree/main/iqu
 If you use content of this repo, please cite:
 
 ```
-@article{rs15092451,
+@article{berga2023,
 AUTHOR = {Berga, David and Gallés, Pau and Takáts, Katalin and Mohedano, Eva and Riordan-Chen, Laura and Garcia-Moll, Clara and Vilaseca, David and Marín, Javier},
 TITLE = {QMRNet: Quality Metric Regression for EO Image Quality Assessment and Super-Resolution},
 JOURNAL = {Remote Sensing},
@@ -84,10 +84,16 @@ ISSN = {2072-4292},
 ABSTRACT = {The latest advances in super-resolution have been tested with general-purpose images such as faces, landscapes and objects, but mainly unused for the task of super-resolving earth observation images. In this research paper, we benchmark state-of-the-art SR algorithms for distinct EO datasets using both full-reference and no-reference image quality assessment metrics. We also propose a novel Quality Metric Regression Network (QMRNet) that is able to predict the quality (as a no-reference metric) by training on any property of the image (e.g., its resolution, its distortions, etc.) and also able to optimize SR algorithms for a specific metric objective. This work is part of the implementation of the framework IQUAFLOW, which has been developed for the evaluation of image quality and the detection and classification of objects as well as image compression in EO use cases. We integrated our experimentation and tested our QMRNet algorithm on predicting features such as blur, sharpness, snr, rer and ground sampling distance and obtained validation medRs below 1.0 (out of N = 50) and recall rates above 95%. The overall benchmark shows promising results for LIIF, CAR and MSRN and also the potential use of QMRNet as a loss for optimizing SR predictions. Due to its simplicity, QMRNet could also be used for other use cases and image domains, as its architecture and data processing is fully scalable.},
 DOI = {10.3390/rs15092451}
 }
-@article{galles2022,
-  title={IQUAFLOW: A NEW FRAMEWORK TO MEASURE IMAGE QUALITY},
-  author={Gallés, Pau and Takáts, Katalin and Hernández-Cabronero, Miguel and Berga, David and Pega, Luciano and Riordan-Chen, Laura and Garcia-Moll, Clara and Becker, Guillermo and Garriga, Adán and Bukva, Anica and Serra-Sagristà, Joan and Vilaseca, David and Marín, Javier},
-  journal={arXiv preprint arXiv:2210.13269},
-  year={2022}
+@article{galles2024,
+  title = {A New Framework for Evaluating Image Quality Including Deep Learning Task Performances as a Proxy},
+  volume = {17},
+  ISSN = {2151-1535},
+  url = {http://dx.doi.org/10.1109/JSTARS.2023.3342475},
+  DOI = {10.1109/jstars.2023.3342475},
+  journal = {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+  publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
+  author = {Gallés,  Pau and Takáts,  Katalin and Hernández-Cabronero,  Miguel and Berga,  David and Pega,  Luciano and Riordan-Chen,  Laura and Garcia,  Clara and Becker,  Guillermo and Garriga,  Adan and Bukva,  Anica and Serra-Sagristà,  Joan and Vilaseca,  David and Marín,  Javier},
+  year = {2024},
+  pages = {3285–3296}
 }
 ```
