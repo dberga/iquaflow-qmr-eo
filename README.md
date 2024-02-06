@@ -1,11 +1,12 @@
 ![](https://github.com/satellogic/iquaflow/blob/main/docs/source/iquaflow_logo_mini.png)
-Check [QMRNet's article](https://www.mdpi.com/2072-4292/15/9/2451) and [IQUAFLOW's preprint](https://arxiv.org/abs/2210.13269) documentation
+Check [QMRNet's Remote Sensing article](https://www.mdpi.com/2072-4292/15/9/2451) and [iquaflow's JSTARS article](https://ieeexplore.ieee.org/abstract/document/10356628) for further documentation. You also can [install iquaflow with pip](https://pypi.org/project/iquaflow/) and look at the [iquaflow's wiki](https://iquaflow.readthedocs.io/en/latest/). 
+
 
 # IQUAFLOW - QMRNet EO Dataset Evaluation
 
 - Note: Use our [jupyter notebook](IQF-UseCase-EO.ipynb) to run the use case.
 
-- The rest of code is distributed in distinct repos [IQUAFLOW framework](https://github.com/satellogic/iquaflow), [QMRNet's Super-Resolution Use case](https://github.com/dberga/iquaflow-qmr-sisr), [QMRNet's Loss for SR](https://github.com/dberga/iquaflow-qmr-loss) and [QMRNet standalone code](https://github.com/satellogic/iquaflow/tree/main/iquaflow/quality_metrics).
+- The rest of code is distributed in distinct repos [iquaflow framework](https://github.com/satellogic/iquaflow), [QMRNet's Super-Resolution Use case](https://github.com/dberga/iquaflow-qmr-sisr), [QMRNet's Loss for SR](https://github.com/dberga/iquaflow-qmr-loss) and [QMRNet standalone code](https://github.com/satellogic/iquaflow/tree/main/iquaflow/quality_metrics).
 
 # Regressor Metrics
 
